@@ -1,5 +1,6 @@
 # A.O.Impact
 [ ![Codeship Status for Akanta21/A.O.Impact](https://codeship.com/projects/6620ac30-3ed9-0134-9c3a-5218b375052b/status?branch=master)](https://codeship.com/projects/167369)
+
 This is the server-side code for AOImpact, an ecommerce web app mainly to aid pre-ordering process.
 
 Buying from a sustainable source, making the world a better place in the process.
