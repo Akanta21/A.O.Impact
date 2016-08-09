@@ -2,12 +2,13 @@ const User = require('../models/user')
 
 function signIn (req, res) {
   const userParams = req.body
+  console.log(userParams)
   User.findOne({email: userParams.email}, (err, user) => {
     if (err || !user) return res.status(401).json({error: 'user or email not found'})
     user.authenticate(userParams.password, (err, isMatch) => {
       // console.log(isMatch)
       if (!isMatch) return res.status(401).json({err: 'email or password is invalid'})
-      res.status(200).json({message: 'user logged in', auth_token: user.auth_token})
+      res.status(200).json({message: 'user logged in', email: user.email, auth_token: user.auth_token})
     })
   })
 }
@@ -30,7 +31,7 @@ function signUp (req, res) {
   user.save((err, user) => {
     // console.log(err)
     if (err) return res.status(401).json({error: '/user creation error 1'})
-    res.status(201).json({message: 'welcome! ', user})
+    res.status(201).json({message: 'welcome! ', auth_token: user.auth_token})
   })
 }
 function editUser (req, res, next) {

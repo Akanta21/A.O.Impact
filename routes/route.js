@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router()
+var request = require('request')
 
 const userController = require('../controllers/user_controller')
 const productController = require('../controllers/product_controller')
@@ -26,4 +27,14 @@ router.post('/newproduct', userController.isAdmin, productController.newItem)
 router.patch('/product/:id', userController.isAdmin, productController.updateItem)
 router.delete('/product/:id', userController.isAdmin, productController.deleteItem)
 
+//  instagram call
+router.get('/api', (req, res) => {
+  request('https://www.instagram.com/torajamelo/media/', function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      var info = JSON.parse(response.body)
+      console.log(info.items)
+      res.send(info.items)
+    }
+  })
+})
 module.exports = router
