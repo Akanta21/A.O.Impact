@@ -35,8 +35,9 @@ function signUp (req, res) {
   })
 }
 function editUser (req, res) {
+  console.log(req.get('Auth-Token'))
   User.findOne({ auth_token: req.get('Auth-Token') }, (err, user) => {
-    if (err) res.status(401).json({error: 'Cannot find user'})
+    if (err || !user) res.status(401).json({error: 'Cannot find user'})
     else {
       user.name = req.body.name
       user.email = req.body.email

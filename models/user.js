@@ -25,7 +25,7 @@ UserSchema.pre('save', function (next) {
     })
   })
   // GENERATE AUTHENTICATION TOKEN
-  user.auth_token = uuid.v4()
+  if(!user.auth_token) user.auth_token = uuid.v4()
 })
 
 UserSchema.methods.authenticate = function (password, callback) {
