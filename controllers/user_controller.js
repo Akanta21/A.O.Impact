@@ -43,7 +43,7 @@ function editUser (req, res) {
       user.password = req.body.password
       user.save(function (err) {
         if (err) return res.status(400).json({error: 'cannot save user'})
-        res.status(201).json({message: 'successfully edited', user})
+        res.status(201).json({user})
       })
     }
   })
