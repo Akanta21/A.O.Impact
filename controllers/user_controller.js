@@ -31,7 +31,7 @@ function signUp (req, res) {
   user.save((err, user) => {
     // console.log(err)
     if (err) return res.status(401).json({error: '/user creation error 1'})
-    res.status(201).json({message: 'welcome! ', auth_token: user.auth_token})
+    res.status(201).json({message: 'welcome! ', user})
   })
 }
 function editUser (req, res, next) {
