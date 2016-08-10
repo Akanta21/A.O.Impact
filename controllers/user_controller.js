@@ -8,7 +8,7 @@ function signIn (req, res) {
     user.authenticate(userParams.password, (err, isMatch) => {
       // console.log(isMatch)
       if (!isMatch) return res.status(401).json({err: 'email or password is invalid'})
-      res.status(200).json({message: 'user logged in', email: user.email, auth_token: user.auth_token})
+      res.status(200).json({message: 'user logged in', user})
     })
   })
 }
