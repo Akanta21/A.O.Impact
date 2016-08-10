@@ -34,18 +34,28 @@ function signUp (req, res) {
     res.status(201).json({message: 'welcome! ', user})
   })
 }
-function editUser (req, res, next) {
+function editUser (req, res) {
   User.findOne({ auth_token: req.get('Auth-Token') }, (err, user) => {
     if (err) res.status(401).json({error: 'Cannot find user'})
     else {
-      console.log(user)
       user.name = req.body.name
       user.email = req.body.email
       user.password = req.body.password
       user.save(function (err) {
-        if (err) res.status(400).json({error: 'cannot save user'})
+        if (err) return res.status(400).json({error: 'cannot save user'})
         res.status(201).json({message: 'User successfully updated!'})
-        next()
+      })
+    }
+  })
+}
+function addPurchaseHistory (req, res) {
+  User.findOne({ auth_token: req.get('Auth-Token') }, (err, user) => {
+    if (err) res.status(401).json({error: 'Cannot find user'})
+    else {
+      user.purchase_history.push(req.body.purchase_history)
+      user.save(function (err) {
+        if (err) return res.status(400).json({error: 'cannot save user'})
+        res.status(201).json({message: 'User successfully updated!'})
       })
     }
   })
@@ -75,6 +85,7 @@ module.exports = {
   userLoggedIn: userLoggedIn,
   signUp: signUp,
   editUser: editUser,
+  addPurchaseHistory: addPurchaseHistory,
   isAdmin: isAdmin,
   deleteUser: deleteUser,
   getAllUsers: getAllUsers
