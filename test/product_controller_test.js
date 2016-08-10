@@ -14,15 +14,15 @@ describe('SHOW /products', function () {
     .set('Accept', 'application/json')
     .expect(200, done)
   })
-  it('should return one product', (done) => {
-    api.get('/product/57a6e5767f206a068bd4b6bd')
-    .end((error, response) => {
-      expect(error).to.be.a('null')
-      expect(response.body).to.be.an('array')
-      expect(response.body[0].title).to.eq('Bro')
-      done()
-    })
-  })
+  // it('should return one product', (done) => {
+  //   api.get('/product/57a6e5767f206a068bd4b6bd')
+  //   .end((error, response) => {
+  //     expect(error).to.be.a('null')
+  //     expect(response.body).to.be.an('array')
+  //     expect(response.body[0].title).to.eq('Bro')
+  //     done()
+  //   })
+  // })
 })
 describe('Creation of a new product', function () {
   var id
