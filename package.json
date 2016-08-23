@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "source .env; nodemon app.js",
-    "test": "source .env; mocha"
+    "test": "source .env; mocha",
+    "seed": "source .env; node models/seed.js"
   },
   "author": "Andrian Kanta",
   "license": "MIT",

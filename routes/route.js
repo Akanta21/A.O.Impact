@@ -19,6 +19,7 @@ router.patch('/profile', userController.editUser)
 router.patch('/addpurchase', userController.addPurchaseHistory)
 router.get('/products', productController.getAllItems)
 router.get('/product/:id', productController.getOneItem)
+router.post('/popular/:id', userController.userLoggedIn, productController.popularItem)
 
 // Admin specific routes for users control
 router.get('/allusers', userController.isAdmin, userController.getAllUsers)

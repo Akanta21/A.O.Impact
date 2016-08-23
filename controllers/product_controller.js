@@ -41,6 +41,19 @@ function updateItem (req, res) {
     })
   })
 }
+// update a new item by id
+function popularItem (req, res) {
+  const id = req.params.id
+  Item.findById({_id: id}, function (err, item) {
+    if (err || !item) return res.status(401).json({err: err})
+    console.log(req.body)
+    item.stock = req.body.stock
+    item.save(function (error, user) {
+      if (error)res.status(422).json({message: 'Could not update product.'})
+      else res.status(200).json({message: 'Succesfully updated'})
+    })
+  })
+}
 
 // delete a makan place by id
 function deleteItem (req, res) {
@@ -55,6 +68,7 @@ function deleteItem (req, res) {
 module.exports = {
   newItem: newItem,
   updateItem: updateItem,
+  popularItem: popularItem,
   deleteItem: deleteItem,
   getAllItems: getAllItems,
   getOneItem: getOneItem
