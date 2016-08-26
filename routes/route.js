@@ -31,12 +31,18 @@ router.patch('/product/:id', userController.isAdmin, productController.updateIte
 router.delete('/product/:id', userController.isAdmin, productController.deleteItem)
 
 //  instagram call
-router.get('/api', (req, res) => {
-  request('https://www.instagram.com/torajamelo/media/', function (error, response, body) {
+router.get('/api/', (req, res) => {
+  console.log(req.query.location)
+  var location = req.query.location
+  request('https://www.instagram.com/' + location + '/media/', function (error, response, body) {
     if (!error && response.statusCode === 200) {
       var info = JSON.parse(response.body)
       console.log(info.items)
       res.send(info.items)
+    } else if (response.statusCode === 304) {
+      res.status.json({message: 'Private account'})
+    } else {
+      res.status(422).json({message: 'User account not found'})
     }
   })
 })
