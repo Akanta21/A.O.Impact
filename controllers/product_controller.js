@@ -33,8 +33,6 @@ function updateItem (req, res) {
     item.title = req.body.title
     item.price = req.body.price
     item.description = req.body.description
-    item.categories = req.body.categories
-    item.stock = req.body.stock
     item.save(function (error, user) {
       if (error)res.status(422).json({message: 'Could not update product.'})
       else res.status(200).redirect('/products')
