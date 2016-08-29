@@ -35,7 +35,7 @@ function updateItem (req, res) {
     item.description = req.body.description
     item.save(function (error, user) {
       if (error)res.status(422).json({message: 'Could not update product.'})
-      else res.status(200).redirect('/products')
+      else res.status(200).json({message: 'Succesfully updated'})
     })
   })
 }
