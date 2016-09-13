@@ -23,6 +23,17 @@ function userLoggedIn (req, res, next) {
     next()
   })
 }
+function userProfile (req, res, next) {
+  const authToken = req.get('Auth-Token')
+  if (!authToken) return res.status(401).json({error: 'unauthorised'})
+
+  User.findOne({auth_token: authToken}, (err, user) => {
+    if (err || !user) return res.status(401).json({error: 'unauthorised'})
+    else {
+      res.status(201).json({user})
+    }
+  })
+}
 
 // CRUD function of individual user
 function signUp (req, res) {
@@ -84,6 +95,7 @@ function deleteUser (req, res, next) {
 module.exports = {
   signIn: signIn,
   userLoggedIn: userLoggedIn,
+  userProfile: userProfile,
   signUp: signUp,
   editUser: editUser,
   addPurchaseHistory: addPurchaseHistory,

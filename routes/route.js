@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 // Routes for customers
 router.post('/signup', userController.signUp)
 router.post('/signin', userController.signIn)
-router.get('/user', userController.userLoggedIn)
+router.get('/user', userController.userProfile)
 router.patch('/profile', userController.editUser)
 router.patch('/addpurchase', userController.addPurchaseHistory)
 router.get('/products', productController.getAllItems)
