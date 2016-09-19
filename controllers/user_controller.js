@@ -61,9 +61,11 @@ function editUser (req, res) {
   })
 }
 function addPurchaseHistory (req, res) {
+  console.log('first pass')
   User.findOne({ auth_token: req.get('Auth-Token') }, (err, user) => {
     if (err) res.status(401).json({error: 'Cannot find user'})
     else {
+      console.log('second pass')
       user.purchase_history.push(req.body.purchase_history)
       user.save(function (err) {
         if (err) return res.status(400).json({error: 'cannot save user'})
