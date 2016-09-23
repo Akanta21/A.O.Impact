@@ -4,6 +4,7 @@ var request = require('request')
 
 const userController = require('../controllers/user_controller')
 const productController = require('../controllers/product_controller')
+const orderController = require('../controllers/order_controller')
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -20,7 +21,11 @@ router.put('/addpurchase', userController.addPurchaseHistory)
 router.get('/products', productController.getAllItems)
 router.get('/product/:id', productController.getOneItem)
 router.post('/popular/:id', userController.userLoggedIn, productController.popularItem)
-
+//  create new order
+router.post('/neworder', orderController.newOrder)
+router.get('/userorders', orderController.getOrdersByUser)
+// make payment
+router.post('/payment', orderController.makeCharges)
 // Admin specific routes for users control
 router.get('/allusers', userController.isAdmin, userController.getAllUsers)
 router.delete('/user/:id', userController.isAdmin, userController.deleteUser)
@@ -29,6 +34,9 @@ router.delete('/user/:id', userController.isAdmin, userController.deleteUser)
 router.post('/newproduct', userController.isAdmin, productController.newItem)
 router.patch('/product/:id', userController.isAdmin, productController.updateItem)
 router.delete('/product/:id', userController.isAdmin, productController.deleteItem)
+
+// Admin specific route for managing orders
+router.get('/orders', userController.isAdmin, orderController.getAllOrders)
 
 //  instagram call
 router.get('/api/', (req, res) => {
