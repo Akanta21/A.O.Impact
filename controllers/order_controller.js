@@ -7,7 +7,7 @@ const stripe = require('stripe')('sk_test_vtR8t4Rbfp4ZhGgL5xSaI1xa')
 function newOrder (req, res) {
   const order = new Order(req.body)
   order.save((err, order) => {
-    // console.log(item)
+    console.log(order)
     if (err) return res.status(401).json({error: 'unable to create new order'})
     res.status(201).json(order)
   })

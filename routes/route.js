@@ -21,11 +21,13 @@ router.put('/addpurchase', userController.addPurchaseHistory)
 router.get('/products', productController.getAllItems)
 router.get('/product/:id', productController.getOneItem)
 router.post('/popular/:id', userController.userLoggedIn, productController.popularItem)
+
 //  create new order
 router.post('/neworder', orderController.newOrder)
 router.get('/userorders', orderController.getOrdersByUser)
 // make payment
 router.post('/payment', orderController.makeCharges)
+
 // Admin specific routes for users control
 router.get('/allusers', userController.isAdmin, userController.getAllUsers)
 router.delete('/user/:id', userController.isAdmin, userController.deleteUser)
