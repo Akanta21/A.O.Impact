@@ -34,7 +34,7 @@ router.delete('/user/:id', userController.isAdmin, userController.deleteUser)
 
 // Admin specific routes for managing inventories
 router.post('/newproduct', userController.isAdmin, productController.newItem)
-router.patch('/product/:id', userController.isAdmin, productController.updateItem)
+router.put('/product/:id', userController.isAdmin, productController.updateItem)
 router.delete('/product/:id', userController.isAdmin, productController.deleteItem)
 
 // Admin specific route for managing orders
