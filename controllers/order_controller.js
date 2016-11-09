@@ -1,7 +1,7 @@
 const Order = require('../models/order')
 
 // stripe
-const stripe = require('stripe')('sk_test_vtR8t4Rbfp4ZhGgL5xSaI1xa')
+const stripe = require('stripe')('sk_test_IwdAjYinHaOwGDGscpXEu5pO')
 
 // create new order
 function newOrder (req, res) {
